@@ -1,7 +1,11 @@
 const usersRoutes = require("./users");
+const path = require("path");
 
 const constructorMethod = (app) => {
     app.use("/users", usersRoutes);
+    app.get("/", (request, response) => {
+        return response.render("home", { pageTitle: "Home" });
+    });
 
     //for accessing unknown routes
     app.use("*", (request, response) => {

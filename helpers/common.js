@@ -1,4 +1,7 @@
 const ErrorCode = require("./error-code");
+const validator = require("validator");
+const uuid = require("uuid");
+const moment = require("moment");
 
 function isArgumentString(string, variableName) {
     if (typeof string !== "string") {
@@ -128,6 +131,32 @@ function isNumberUnderUpperLimit(number, upperLimit, variableName) {
     }
 }
 
+function isEmail(email) {
+    if (!validator.isEmail(email)) {
+        throwError(ErrorCode.BAD_REQUEST, `Error: Email not valid.`);
+    }
+}
+
+function isDate(date) {
+    if (!moment(date, "MM/DD/YYYY", true).isValid()) {
+        throwError(ErrorCode.BAD_REQUEST, `Error: Date not valid.`);
+    }
+}
+
+function isBirthDate(date) {
+    if (!moment(date, "MM/DD/YYYY").isBefore(moment(), "day")) {
+        throwError(ErrorCode.BAD_REQUEST, `Error: Birth date not valid.`);
+    }
+}
+
+function isUuid(id) {
+    const PROJECT_UUID_VERSION = 4;
+
+    if (!uuid.validate(id) || uuid.version(id) !== PROJECT_UUID_VERSION) {
+        throwError(ErrorCode.BAD_REQUEST, `Error: Invalid id.`);
+    }
+}
+
 const throwError = (code = 500, message = "Error: Internal server error") => {
     throw { code, message };
 };
@@ -146,4 +175,8 @@ module.exports = {
     isNumberPositive,
     isNumberUnderUpperLimit,
     isNumber,
+    isEmail,
+    isDate,
+    isBirthDate,
+    isUuid,
 };
