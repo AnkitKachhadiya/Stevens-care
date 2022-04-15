@@ -162,7 +162,7 @@ router.get("/profile", async (request, response) => {
     }
 });
 
-//update profile page
+//update profile page view
 router.get("/update-profile", async (request, response) => {
     if (!request.session.user) {
         return response.redirect("/");
@@ -189,6 +189,7 @@ router.get("/update-profile", async (request, response) => {
     }
 });
 
+//submit update profile page
 router.put("/profile", async (request, response) => {
     if (!request.session.user) {
         return response.redirect("/");
@@ -197,7 +198,9 @@ router.put("/profile", async (request, response) => {
     try {
         const requestPostData = request.body;
 
-        validator.isPutProfileFieldsValid(Object.keys(requestPostData).length);
+        validator.isSubmitProfileFieldsValid(
+            Object.keys(requestPostData).length
+        );
 
         const firstName = validator.isFirstNameValid(
             xss(requestPostData.firstName)
@@ -240,6 +243,82 @@ router.put("/profile", async (request, response) => {
         response.status(error.code || ErrorCode.INTERNAL_SERVER_ERROR).json({
             isError: true,
             error: error.message || "Internal server error",
+        });
+    }
+});
+
+//change password form
+router.get("/changePassword", async (request, response) => {
+    if (!request.session.user) {
+        return response.redirect("/");
+    }
+
+    const passwordUpdatedFlashMessage = request.app.locals.isPasswordUpdated
+        ? request.app.locals.passwordUpdatedFlashMessage
+        : false;
+
+    request.app.locals.isPasswordUpdated = undefined;
+    request.app.locals.passwordUpdatedFlashMessage = undefined;
+
+    response.render("users/change-password", {
+        pageTitle: "Change Password",
+        passwordUpdatedFlashMessage: passwordUpdatedFlashMessage,
+    });
+});
+
+//change password submit
+router.put("/password", async (request, response) => {
+    if (!request.session.user) {
+        return response.redirect("/");
+    }
+
+    try {
+        const requestPostData = request.body;
+
+        validator.isSubmitPasswordFieldValid(
+            Object.keys(requestPostData).length
+        );
+
+        const currentPassword = validator.isPasswordValid(
+            xss(requestPostData.currentPassword)
+        );
+        const newPassword = validator.isPasswordValid(
+            xss(requestPostData.newPassword)
+        );
+        const confirmPassword = validator.isPasswordValid(
+            xss(requestPostData.confirmPassword)
+        );
+
+        if (newPassword !== confirmPassword) {
+            throwError(
+                ErrorCode.BAD_REQUEST,
+                "Error: Confirm password does not match new password."
+            );
+        }
+
+        const password = await usersData.updatePassword(
+            request.session.user._id,
+            currentPassword,
+            newPassword,
+            confirmPassword
+        );
+
+        if (!password.passwordUpdated) {
+            throwError(
+                ErrorCode.INTERNAL_SERVER_ERROR,
+                "Internal Server Error"
+            );
+        }
+
+        request.app.locals.isPasswordUpdated = true;
+        request.app.locals.passwordUpdatedFlashMessage =
+            "Your password has been changed successfully.";
+
+        response.json({ isError: false });
+    } catch (error) {
+        response.status(error.code || ErrorCode.INTERNAL_SERVER_ERROR).json({
+            isError: true,
+            error: error.message || "Error: Internal server error.",
         });
     }
 });

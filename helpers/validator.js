@@ -30,8 +30,20 @@ function isUpdateProfileFieldsValid(totalFields) {
     common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
 }
 
-function isPutProfileFieldsValid(totalFields) {
+function isSubmitProfileFieldsValid(totalFields) {
     const TOTAL_MANDATORY_FIELDS = 3;
+
+    common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
+}
+
+function isSubmitPasswordFieldValid(totalFields) {
+    const TOTAL_MANDATORY_FIELDS = 3;
+
+    common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
+}
+
+function isUpdatePasswordTotalFieldsValid(totalFields) {
+    const TOTAL_MANDATORY_FIELDS = 4;
 
     common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
 }
@@ -107,7 +119,9 @@ module.exports = {
     isLoginTotalFieldsValid,
     isCheckUserTotalFieldsValid,
     isUpdateProfileFieldsValid,
-    isPutProfileFieldsValid,
+    isSubmitProfileFieldsValid,
+    isSubmitPasswordFieldValid,
+    isUpdatePasswordTotalFieldsValid,
     isFirstNameValid,
     isLastNameValid,
     isEmailValid,
