@@ -64,3 +64,34 @@
 .hover-color-none:hover {
     color: white;
 }
+
+.image-icon {
+    width: 64px;
+    height: 64px;
+
+}
+
+.image-card {
+    width: 9rem;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.body-part-color {
+    fill: #57c9d5;
+    outline: none;
+}
+
+.body-part-color.selected {
+    fill: #ff7d16;
+    outline: none;
+}
+
+.body-part-color:hover {
+    fill: #ff7d16;
+    cursor: pointer;
+}
+
+.body-svg {
+    height: 35rem;
+}

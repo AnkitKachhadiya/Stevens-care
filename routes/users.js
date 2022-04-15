@@ -247,7 +247,7 @@ router.put("/profile", async (request, response) => {
     }
 });
 
-//change password form
+//change password form view
 router.get("/changePassword", async (request, response) => {
     if (!request.session.user) {
         return response.redirect("/");
@@ -321,6 +321,11 @@ router.put("/password", async (request, response) => {
             error: error.message || "Error: Internal server error.",
         });
     }
+});
+
+//user options view
+router.get("/options", async (request, response) => {
+    response.render("users/options", { pageTitle: "Options" });
 });
 
 const throwError = (code = 500, message = "Error: Internal Server Error") => {

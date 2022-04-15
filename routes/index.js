@@ -1,8 +1,10 @@
 const usersRoutes = require("./users");
+const questionsRoutes = require("./questions");
 const path = require("path");
 
 const constructorMethod = (app) => {
     app.use("/users", usersRoutes);
+    app.use("/questions", questionsRoutes);
     app.get("/", (request, response) => {
         return response.render("home", { pageTitle: "Home" });
     });
