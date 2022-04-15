@@ -24,6 +24,18 @@ function isCheckUserTotalFieldsValid(totalFields) {
     common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
 }
 
+function isUpdateProfileFieldsValid(totalFields) {
+    const TOTAL_MANDATORY_FIELDS = 4;
+
+    common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
+}
+
+function isPutProfileFieldsValid(totalFields) {
+    const TOTAL_MANDATORY_FIELDS = 3;
+
+    common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
+}
+
 function isFirstNameValid(firstName) {
     return validateUserIdentity(firstName, "First Name");
 }
@@ -94,6 +106,8 @@ module.exports = {
     isGetUserTotalFieldsValid,
     isLoginTotalFieldsValid,
     isCheckUserTotalFieldsValid,
+    isUpdateProfileFieldsValid,
+    isPutProfileFieldsValid,
     isFirstNameValid,
     isLastNameValid,
     isEmailValid,

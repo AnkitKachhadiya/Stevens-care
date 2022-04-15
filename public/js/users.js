@@ -291,4 +291,66 @@
             },
         });
     }
+
+    $(document).on("submit", "form#edit-user-profile", function (event) {
+        event.preventDefault();
+
+        hasErrors = false;
+
+        $("#error-message").addClass("d-none");
+
+        const firstName = $("#first-name");
+        const lastName = $("#last-name");
+        const dateOfBirth = $("#date-of-birth");
+
+        const user = {
+            firstName: firstName.val().trim(),
+            lastName: lastName.val().trim(),
+            dateOfBirth: dateOfBirth.val().trim(),
+        };
+
+        $("input").removeClass("is-invalid is-valid");
+
+        validUserIdentity(user.firstName)
+            ? firstName.addClass("is-valid")
+            : firstName.addClass("is-invalid");
+
+        validUserIdentity(user.lastName)
+            ? lastName.addClass("is-valid")
+            : lastName.addClass("is-invalid");
+
+        validDateOfBirth(user.dateOfBirth)
+            ? dateOfBirth.addClass("is-valid")
+            : dateOfBirth.addClass("is-invalid");
+
+        if (hasErrors) {
+            return;
+        }
+
+        user.dateOfBirth = moment(user.dateOfBirth).format("MM/DD/YYYY");
+
+        submitUpdateProfileForm(user);
+    });
+
+    function submitUpdateProfileForm(user) {
+        $.ajax({
+            url: "/users/profile",
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(user),
+            beforeSend: function () {
+                $("#loader-container").removeClass("d-none");
+            },
+            success: function () {
+                window.location.href = "/users/profile";
+            },
+            complete: function () {
+                $("#loader-container").addClass("d-none");
+            },
+            error: function (data) {
+                $("#error-message").html(data.responseJSON.error);
+                $("#error-message").removeClass("d-none");
+            },
+        });
+    }
 })(jQuery);

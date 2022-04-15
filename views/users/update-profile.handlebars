@@ -4,19 +4,29 @@
             <div class="card shadow">
                 <div class="card-body p-6">
 
-
                     <div class="mb-4">
                         <h1 class="mb-1 fw-bold">Edit your profile</h1>
                     </div>
 
-                    <form id="edit-user-profile" class="needs-validation" novalidate>
+                    <form
+                        id="edit-user-profile"
+                        class="needs-validation"
+                        novalidate
+                    >
 
                         <div class="mb-3">
-                            <label for="first-name-input" class="form-label">First Name<span
-                                    class="mandatory">*</span></label>
-                            <input type="text" id="first-name-input" class="form-control" name="firstName"
-                                placeholder="First Name" value={{user.firstName}} required="required"
-                                autocomplete="off" />
+                            <label for="first-name" class="form-label">First
+                                Name<span class="mandatory">*</span></label>
+                            <input
+                                type="text"
+                                id="first-name"
+                                class="form-control"
+                                name="firstName"
+                                placeholder="First Name"
+                                value={{user.firstName}}
+                                required="required"
+                                autocomplete="off"
+                            />
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -24,16 +34,25 @@
                                 First name is mandatory.
                             </div>
                             <div class="invalid-feedback">
-                                First name should have only alphabetical characters and/or spaces.
+                                First name should have only alphabetical
+                                characters and/or spaces.
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="last-name-input" class="form-label">Last Name<span
-                                    class="mandatory">*</span></label>
-                            <input type="text" id="last-name-input" class="form-control" name="lastName"
-                                placeholder="Last Name" value={{user.lastName}} required="required"
-                                autocomplete="off" />
+                            <label for="last-name" class="form-label">Last Name<span
+                                    class="mandatory"
+                                >*</span></label>
+                            <input
+                                type="text"
+                                id="last-name"
+                                class="form-control"
+                                name="lastName"
+                                placeholder="Last Name"
+                                value={{user.lastName}}
+                                required="required"
+                                autocomplete="off"
+                            />
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -41,16 +60,24 @@
                                 Last name is mandatory.
                             </div>
                             <div class="invalid-feedback">
-                                Last name should have only alphabetical characters and/or spaces.
+                                Last name should have only alphabetical
+                                characters and/or spaces.
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="date-of-birth-input" class="form-label">Date of Birth<span
-                                    class="mandatory">*</span></label>
-                            <input type="text" id="date-of-birth-input" class="form-control" name="dateOfBirth"
-                                placeholder="Date of Birth" value={{user.dateOfBirth}} required="required"
-                                autocomplete="off" />
+                            <label for="date-of-birth" class="form-label">Date
+                                of Birth<span class="mandatory">*</span></label>
+                            <input
+                                type="date"
+                                id="date-of-birth"
+                                class="form-control"
+                                name="dateOfBirth"
+                                placeholder="Date of Birth"
+                                value={{user.dateOfBirth}}
+                                required="required"
+                                autocomplete="off"
+                            />
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -61,7 +88,8 @@
                                 Date of birth should be before today's date.
                             </div>
                             <div class="invalid-feedback">
-                                Date of birth should be valid date with format `mm/dd/yyyy`.
+                                Date of birth should be valid date with format
+                                `mm/dd/yyyy`.
                             </div>
                         </div>
 
@@ -69,8 +97,12 @@
 
                         <div>
                             <div class="d-grid">
-                                <button type="submit" id="submitButton" name="submitButton" class="btn btn-primary">Save
-                                    Profile</button>
+                                <button
+                                    type="submit"
+                                    id="submitButton"
+                                    name="submitButton"
+                                    class="btn btn-primary"
+                                >Save Profile</button>
                             </div>
                         </div>
                     </form>
@@ -82,5 +114,11 @@
     </div>
 </div>
 
-<script src="https://momentjs.com/downloads/moment.js"></script>
-<script src="/public/js/editProfile.js"></script>
+<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+    integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+></script>
+<script src="/public/js/users.js"></script>

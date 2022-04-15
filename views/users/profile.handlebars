@@ -1,39 +1,33 @@
-<div class="container d-flex flex-column mt-3">
+<div class="container d-flex flex-column mt-5">
     <div class="row align-items-center justify-content-center g-0">
         <div class="col-lg-5 col-md-8 py-8 py-xl-0">
             <div class="card shadow">
                 <div class="card-body p-6">
 
-                    <div class="card text-center mb-3">
-                        <div class="card-header">
+                    <div class="card mb-3">
+                        <div class="card-header text-center">
                             User Profile
                         </div>
                         <div class="card-body">
-                            <p class="card-title">{{user.firstName}} {{user.lastName}}</p>
-                            <p class="card-text">{{user.email}}</p>
-                            <p class="card-text">{{user.dateOfBirth}}</p>
-                            <a href="/users/update-profile" class="badge bg-primary text-decoration-none">Edit
-                                Profile</a>
-                        </div>
-                    </div>
-
-                    <div class="card text-center">
-                        <div class="card-header">
-                            User Statistics
-                        </div>
-                        <div class="card-body">
-                            <p class="card-title">Statistics</p>
-                            <p class="card-text">Total Number of Tasklists: {{userStatistics.numTasklists}}</p>
-                            <p class="card-text">Total Number of Tasks: {{userStatistics.numTasks}}</p>
-                            <p class="card-text">Number of Tasks Completed: {{userStatistics.completed}}</p>
-                            <p class="card-text">Number of Tasks Uncompleted: {{userStatistics.notCompleted}}</p>
-                            <p class="card-text">Number of Tasks Completed On Time: {{userStatistics.completedOnTime}}
+                            <p class="card-text"><strong>First Name:
+                                </strong>{{user.firstName}}
                             </p>
-                            <p class="card-text">Number of Tasks Not Completed On Time:
-                                {{userStatistics.notCompletedOnTime}}</p>
+                            <p class="card-text"><strong>Last Name:
+                                </strong>{{user.lastName}}</p>
+                            <p class="card-text">
+                                <strong>Email: </strong>
+                                {{user.email}}
+                            </p>
+                            <p class="card-text">
+                                <strong>Date of birth: </strong>
+                                {{user.dateOfBirth}}
+                            </p>
+                            <p class="text-center"><a
+                                    href="/users/update-profile"
+                                    class="badge bg-primary text-decoration-none hover-color-none"
+                                >Edit Profile</a></p>
                         </div>
                     </div>
-
                 </div>
 
             </div>
