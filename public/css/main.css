@@ -88,10 +88,41 @@
 }
 
 .body-part-color:hover {
-    fill: #ff7d16;
+    fill: #000000;
+    cursor: pointer;
+}
+
+.body-part-color.selected:hover {
+    fill: #ffb87f;
     cursor: pointer;
 }
 
 .body-svg {
     height: 35rem;
+}
+
+#body-parts-question {
+    width: 35rem;
+    max-width: 35rem;
+}
+
+.body-parts-pill {
+    margin-right: 5px;
+    cursor: default;
+    margin-bottom: 5px;
+}
+
+#body-parts-wrapper {
+    border: 1px black solid;
+    padding: 3px 5px;
+    border-radius: 3px;
+}
+
+#pain-range {
+    width: 50%;
+    padding-top: 12px;
+}
+
+#right-column {
+    margin-left: 8rem;
 }

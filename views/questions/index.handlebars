@@ -1,0 +1,93 @@
+<div class="container text-center mt-4 d-flex flex-row">
+    <div class="list-group me-3 position-fixed" id="left-column">
+        <a href="#body-parts-card" class="list-group-item list-group-item-action" aria-current="true">
+            Body Parts
+        </a>
+        <a href="#questions-card" class="list-group-item list-group-item-action">Questions</a>
+    </div>
+
+    <div id="right-column">
+        <div class="card" id="body-parts-card">
+            <div class="card-header">
+                Select body part(s) below where you are having problem.
+            </div>
+            <div class="card-body">
+                <div class="container d-flex flex-row justify-content-evenly">
+                    <div class="me-5">
+                        <div class="d-flex flex-row justify-content-around mb-3">
+                            <span><strong>Front</strong></span>
+                            <span><strong>Back</strong></span>
+                        </div>
+                        {{> body}}
+                    </div>
+                    <div class="text-start" id="body-parts-question">
+                        <p class="mb-0">Body Parts Selected</p>
+                        <div class="mb-4" id="body-parts-wrapper"><span
+                                class="badge rounded-pill bg-dark body-parts-pill">none</span>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="description" class="form-label">Add
+                                description about your health problem</label>
+                            <textarea class="form-control" id="description" rows="5"></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-primary">Next</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-4" id="questions-card">
+            <div class="card-header">
+                Please answer below questions for proper diagnosis.
+            </div>
+            <div class="card-body text-start">
+                <div class="mb-4">
+                    <label for="pain-range" class="form-label">On the scale of 0 to 10 how bad is your pain right now ?
+                        (0 being no pain and
+                        10 being extreme pain)</label>
+                    <div>
+                        <span>0</span>
+                        <input type="range" id="pain-range" class="form-range" min="0" max="10" step="1">
+                        <span>10</span>
+                    </div>
+
+                </div>
+                <div class="mb-4">
+                    <label for="question-1" class="form-label">Since when you are facing this problem ?</label>
+                    <textarea class="form-control" id="question-1" rows="1"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="question-2" class="form-label">Is this the first time you are having this
+                        problem ?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="first-time-problem" id="question-2-1">
+                        <label class="form-check-label" for="question-2-1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="first-time-problem" id="question-2-2">
+                        <label class="form-check-label" for="question-2-2">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="question-3" class="form-label">What relives your pain ?</label>
+                    <textarea class="form-control" id="question-3" rows="1"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="question-4" class="form-label">Are you taking any medication? If yes, then please list
+                        all the medicines you are taking.</label>
+                    <textarea class="form-control" id="question-4" rows="1"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="/public/js/questions.js"></script>

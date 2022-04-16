@@ -7,8 +7,8 @@ const data = require("../data");
 const usersData = data.users;
 const router = express.Router();
 
-router.get("/page1", async (request, response) => {
-    response.render("questions/body", { pageTitle: "Questions" });
+router.get("/", async (request, response) => {
+    response.render("questions", { pageTitle: "Questions" });
 });
 
 module.exports = router;
