@@ -54,4 +54,56 @@
 
         $("#body-parts-wrapper").html(html);
     }
+
+    $(document).on("click", "button#submit-case", function () {
+        $("#error").addClass("d-none");
+        const description = $("#description").val().trim();
+        const painRange = $("#pain-range").val();
+        const question1 = $("#question-1").val().trim();
+        const question3 = $("#question-3").val().trim();
+        const question4 = $("#question-4").val().trim();
+        const firstTimeProblem = $(
+            "input[name='first-time-problem']:checked"
+        ).val();
+
+        if (validator.isEmpty(description)) {
+            $("#body-parts-card").get(0).scrollIntoView();
+            $("#error").removeClass("d-none");
+            return false;
+        }
+
+        const patientCase = {
+            bodyPartsIds,
+            description,
+            painRange,
+            question1,
+            question3,
+            question4,
+            firstTimeProblem: firstTimeProblem || null,
+        };
+
+        submitPatientCaseForm(patientCase);
+    });
+
+    function submitPatientCaseForm(patientCase) {
+        $.ajax({
+            url: "/cases/addCase",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(patientCase),
+            beforeSend: function () {
+                $("#loader-container").removeClass("d-none");
+            },
+            success: function () {
+                // window.location.href = "/users/profile";
+            },
+            complete: function () {
+                $("#loader-container").addClass("d-none");
+            },
+            error: function (data) {
+                $("#error-message").html(data.responseJSON.error);
+                $("#error-message").removeClass("d-none");
+            },
+        });
+    }
 })(jQuery);

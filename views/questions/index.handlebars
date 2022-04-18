@@ -9,7 +9,7 @@
     <div id="right-column">
         <div class="card" id="body-parts-card">
             <div class="card-header">
-                Select body part(s) below where you are having problem.
+                Select body part(s) below where you are having health problem.
             </div>
             <div class="card-body">
                 <div class="container d-flex flex-row justify-content-evenly">
@@ -27,13 +27,12 @@
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="description" class="form-label">Add
-                                description about your health problem</label>
+                                description about your health problem<span class="mandatory">*</span></label>
                             <textarea class="form-control" id="description" rows="5"></textarea>
+                            <div id="error" class="d-none">
+                                Description is mandatory.
+                            </div>
                         </div>
-                        <div class="text-end">
-                            <button type="button" class="btn btn-primary">Next</button>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -45,38 +44,40 @@
             </div>
             <div class="card-body text-start">
                 <div class="mb-4">
-                    <label for="pain-range" class="form-label">On the scale of 0 to 10 how bad is your pain right now ?
+                    <label for="pain-range" class="form-label">On the scale of 0 to 10 how bad is your pain right now?
                         (0 being no pain and
                         10 being extreme pain)</label>
                     <div>
                         <span>0</span>
-                        <input type="range" id="pain-range" class="form-range" min="0" max="10" step="1">
+                        <input type="range" id="pain-range" class="form-range" min="0" max="10" step="1" value="0">
                         <span>10</span>
                     </div>
 
                 </div>
                 <div class="mb-4">
-                    <label for="question-1" class="form-label">Since when you are facing this problem ?</label>
+                    <label for="question-1" class="form-label">Since when you are facing this health problem?</label>
                     <textarea class="form-control" id="question-1" rows="1"></textarea>
                 </div>
                 <div class="mb-4">
                     <label for="question-2" class="form-label">Is this the first time you are having this
-                        problem ?</label>
+                        health problem?</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="first-time-problem" id="question-2-1">
+                        <input class="form-check-input" type="radio" name="first-time-problem" id="question-2-1"
+                            value="Yes">
                         <label class="form-check-label" for="question-2-1">
                             Yes
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="first-time-problem" id="question-2-2">
+                        <input class="form-check-input" type="radio" name="first-time-problem" id="question-2-2"
+                            value="No">
                         <label class="form-check-label" for="question-2-2">
                             No
                         </label>
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label for="question-3" class="form-label">What relives your pain ?</label>
+                    <label for="question-3" class="form-label">What helps to alleviate your health problem?</label>
                     <textarea class="form-control" id="question-3" rows="1"></textarea>
                 </div>
                 <div class="mb-4">
@@ -86,8 +87,13 @@
                 </div>
             </div>
         </div>
+        <div class="text-center mt-4">
+            <p class="text-danger d-none" id="error-message"></p>
+            <button type="button" class="btn btn-primary" id="submit-case">Submit</button>
+        </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
 <script src="/public/js/questions.js"></script>
