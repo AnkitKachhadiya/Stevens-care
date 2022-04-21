@@ -1,0 +1,97 @@
+<div class="container mt-4">
+    <div class="card" id="body-parts-card">
+        <div class="card-header text-center">
+            Select body part(s) below where you are having health problem.
+        </div>
+        <div class="card-body">
+            <div class="container d-flex flex-row justify-content-evenly">
+                <div class="me-5">
+                    <div class="d-flex flex-row justify-content-around mb-3">
+                        <span><strong>Front</strong></span>
+                        <span><strong>Back</strong></span>
+                    </div>
+                    {{> body}}
+                </div>
+                <div class="text-start" id="body-parts-question">
+                    <p class="mb-0">Body Parts Selected</p>
+                    <div class="mb-4" id="body-parts-wrapper">
+                        {{#if caseData.bodyParts.length}}
+                        {{#each caseData.bodyParts}}
+                        <span class="badge rounded-pill bg-primary body-parts-pill">{{this}}</span>
+                        {{/each}}
+                        {{else}}
+                        <span class="badge rounded-pill bg-dark body-parts-pill">none</span>
+                        {{/if}}
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="description" class="form-label">Add
+                            description about your health problem<span class="mandatory">*</span></label>
+                        <textarea class="form-control" id="description" rows="5"
+                            readonly>{{caseData.description}}</textarea>
+                        <div id="error" class="d-none">
+                            Description is mandatory.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4" id="questions-card">
+        <div class="card-header text-center">
+            Please answer below questions for proper diagnosis.
+        </div>
+        <div class="card-body text-start">
+            <div class="mb-4">
+                <label for="pain-range" class="form-label">On the scale of 0 to 10 how bad is your pain right now?
+                    (0 being no pain and
+                    10 being extreme pain)</label>
+                <div>
+                    <span>0</span>
+                    <input type="range" id="pain-range" class="form-range" min="0" max="10" step="1"
+                        value="{{caseData.painRange}}" disabled>
+                    <span>10</span>
+                </div>
+
+            </div>
+            <div class="mb-4">
+                <label for="question-radio-1" class="form-label">Is this the first time you are having this
+                    health problem?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="first-time-problem" id="question-radio-1-1"
+                        value="Yes" {{#ifeq caseData.firstTimeProblem "Yes" }}checked{{/ifeq}} disabled>
+                    <label class="form-check-label" for="question-radio-1-1">
+                        Yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="first-time-problem" id="question-radio-1-2"
+                        value="No" {{#ifeq caseData.firstTimeProblem "No" }}checked{{/ifeq}} disabled>
+                    <label class="form-check-label" for="question-radio-1-2">
+                        No
+                    </label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="question-1" class="form-label">Since when you are facing this health problem?</label>
+                <textarea class="form-control" id="question-1" rows="1" readonly>{{caseData.question1}}</textarea>
+            </div>
+            <div class="mb-4">
+                <label for="question-2" class="form-label">What helps to alleviate your health problem?</label>
+                <textarea class="form-control" id="question-2" rows="1" readonly>{{caseData.question2}}</textarea>
+            </div>
+            <div class="mb-4">
+                <label for="question-3" class="form-label">Are you taking any medication? If yes, then please list
+                    all the medicines you are taking.</label>
+                <textarea class="form-control" id="question-3" rows="1" readonly>{{caseData.question3}}</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip({ trigger: "hover" });
+    });
+</script>

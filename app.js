@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const configRoutes = require("./routes");
-const { engine } = require("express-handlebars");
+const { create } = require("express-handlebars");
 
 const static = express.static(__dirname + "/public");
 const app = express();
@@ -14,7 +14,17 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.engine("handlebars", engine());
+const hbs = create({
+    helpers: {
+        ifeq: function (leftValue, rightValue, options) {
+            return leftValue === rightValue
+                ? options.fn(this)
+                : options.inverse(this);
+        },
+    },
+});
+
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 

@@ -169,7 +169,7 @@ router.get("/update-profile", async (request, response) => {
     }
 
     try {
-        user = await usersData.get(request.session.user._id);
+        const user = await usersData.get(request.session.user._id);
 
         user.dateOfBirth = moment(Date.parse(user.dateOfBirth)).format(
             "YYYY-MM-DD"
