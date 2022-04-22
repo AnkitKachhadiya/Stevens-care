@@ -31,6 +31,7 @@ async function addCase(
             dateOfCreation: moment().format("MM/DD/YYYY"),
             isCaseOpen: true,
             caseComment: "",
+            caseClosingDate: "",
         };
 
         const casesCollection = await cases();
@@ -87,6 +88,39 @@ async function getCaseById(caseId) {
     }
 }
 
+async function getAllCases() {
+    try {
+        const casesCollection = await cases();
+
+        const allCases = await casesCollection
+            .aggregate([
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "userId",
+                        foreignField: "_id",
+                        as: "user",
+                    },
+                },
+                {
+                    $project: {
+                        _id: 1,
+                        description: 1,
+                        dateOfCreation: 1,
+                        isCaseOpen: 1,
+                        firstName: { $arrayElemAt: ["$user.firstName", 0] },
+                        lastName: { $arrayElemAt: ["$user.lastName", 0] },
+                    },
+                },
+            ])
+            .toArray();
+
+        return allCases;
+    } catch (error) {
+        throwCatchError(error);
+    }
+}
+
 const throwError = (code = 500, message = "Error: Internal Server Error") => {
     throw { code, message };
 };
@@ -107,4 +141,5 @@ module.exports = {
     addCase,
     getMyCases,
     getCaseById,
+    getAllCases,
 };

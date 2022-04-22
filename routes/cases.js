@@ -1,6 +1,4 @@
 const express = require("express");
-const validator = require("../helpers/validator");
-const xss = require("xss");
 const ErrorCode = require("../helpers/error-code");
 const data = require("../data");
 
@@ -8,10 +6,18 @@ const casesData = data.cases;
 const router = express.Router();
 
 router.get("/addCase", async (request, response) => {
+    if (!request.session.user) {
+        return response.redirect("/");
+    }
+
     response.render("questions", { pageTitle: "Questions" });
 });
 
 router.post("/addCase", async (request, response) => {
+    if (!request.session.user) {
+        return response.redirect("/");
+    }
+
     try {
         const requestPostData = request.body;
 
@@ -44,10 +50,12 @@ router.post("/addCase", async (request, response) => {
 });
 
 router.get("/myCases", async (request, response) => {
+    if (!request.session.user) {
+        return response.redirect("/");
+    }
+
     try {
-        const myCases = await casesData.getMyCases(
-            "6ab4ee5a-8a97-4a78-850f-fff89b546055"
-        );
+        const myCases = await casesData.getMyCases(request.session.user._id);
 
         response.render("cases/my-cases", {
             pageTitle: "My Cases",
@@ -64,6 +72,10 @@ router.get("/myCases", async (request, response) => {
 });
 
 router.get("/:id", async (request, response) => {
+    if (!request.session.user) {
+        return response.redirect("/");
+    }
+
     try {
         const caseData = await casesData.getCaseById(request.params.id);
 
@@ -73,8 +85,6 @@ router.get("/:id", async (request, response) => {
                       currentBodyPart.split("-").join(" ")
                   )
                 : [];
-
-        console.log(caseData);
 
         response.render("cases/case", {
             pageTitle: "Case",

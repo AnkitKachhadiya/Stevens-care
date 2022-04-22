@@ -1,10 +1,12 @@
 const usersRoutes = require("./users");
 const casesRoutes = require("./cases");
+const adminRoutes = require("./admin");
 const path = require("path");
 
 const constructorMethod = (app) => {
     app.use("/users", usersRoutes);
     app.use("/cases", casesRoutes);
+    app.use("/admin", adminRoutes);
     app.get("/", (request, response) => {
         return response.render("home", { pageTitle: "Home" });
     });

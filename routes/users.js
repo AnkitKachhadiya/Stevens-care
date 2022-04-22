@@ -325,6 +325,10 @@ router.put("/password", async (request, response) => {
 
 //user options view
 router.get("/options", async (request, response) => {
+    if (!request.session.user) {
+        return response.redirect("/");
+    }
+
     response.render("users/options", { pageTitle: "Options" });
 });
 

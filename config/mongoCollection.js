@@ -19,4 +19,5 @@ const getCollectionFn = (collection) => {
 module.exports = {
     users: getCollectionFn("users"),
     cases: getCollectionFn("cases"),
+    admin: getCollectionFn("admin"),
 };
