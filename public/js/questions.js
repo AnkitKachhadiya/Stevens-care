@@ -94,8 +94,8 @@
             beforeSend: function () {
                 $("#loader-container").removeClass("d-none");
             },
-            success: function () {
-                // window.location.href = "/users/profile";
+            success: function (data) {
+                window.location.href = `/cases/${data.caseId}`;
             },
             complete: function () {
                 $("#loader-container").addClass("d-none");

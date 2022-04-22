@@ -43,7 +43,7 @@
                 $("#loader-container").removeClass("d-none");
             },
             success: function () {
-                window.location.href = "/";
+                window.location.href = "/admin/cases";
             },
             complete: function () {
                 $("#loader-container").addClass("d-none");

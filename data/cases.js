@@ -112,10 +112,44 @@ async function getAllCases() {
                         lastName: { $arrayElemAt: ["$user.lastName", 0] },
                     },
                 },
+                {
+                    $sort: {
+                        isCaseOpen: -1,
+                        dateOfCreation: 1,
+                    },
+                },
             ])
             .toArray();
 
         return allCases;
+    } catch (error) {
+        throwCatchError(error);
+    }
+}
+
+async function closeCase(caseComment, caseId) {
+    try {
+        const casesCollection = await cases();
+
+        const toBeUpdated = {
+            isCaseOpen: false,
+            caseComment: caseComment,
+            caseClosingDate: moment().format("MM/DD/YYYY"),
+        };
+
+        const updatedInfo = await casesCollection.updateOne(
+            { _id: caseId },
+            { $set: toBeUpdated }
+        );
+
+        if (updatedInfo.modifiedCount !== 1) {
+            throwError(
+                ErrorCode.INTERNAL_SERVER_ERROR,
+                "Error: Could not update case."
+            );
+        }
+
+        return { caseUpdated: true };
     } catch (error) {
         throwCatchError(error);
     }
@@ -142,4 +176,5 @@ module.exports = {
     getMyCases,
     getCaseById,
     getAllCases,
+    closeCase,
 };

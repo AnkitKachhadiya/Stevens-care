@@ -62,8 +62,6 @@ async function checkAdmin(_email, _password) {
 
         const adminData = await adminCollection.findOne({ email: email });
 
-        console.log(adminData);
-
         if (!adminData) {
             throwError(
                 ErrorCode.BAD_REQUEST,

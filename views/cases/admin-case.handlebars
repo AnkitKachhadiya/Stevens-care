@@ -1,3 +1,4 @@
+{{> admin-header}}
 <div class="container mt-4">
 
     <div class="card">
@@ -115,6 +116,22 @@
         </div>
     </div>
 
+    {{#if caseData.isCaseOpen}}
+    <div class="card mt-4">
+        <form action="/admin/closeCase/{{caseData._id}}" method="POST">
+            <div class="card-header text-center">
+                Diagnosis / recommendation
+            </div>
+            <div class="card-body text-start">
+                <textarea class="form-control" name="caseComment" rows="4" required="required"></textarea>
+                <div class="text-end mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {{/if}}
+
     <div class="text-center mt-5">
         <a class="btn btn-primary" href="/admin/cases" role="button">Go Back</a>
     </div>
@@ -126,3 +143,5 @@
         $('[data-bs-toggle="tooltip"]').tooltip({ trigger: "hover" });
     });
 </script>
+
+{{> admin-footer}}

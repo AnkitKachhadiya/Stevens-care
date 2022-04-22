@@ -13,7 +13,7 @@ router.get("/", async (request, response) => {
         return response.redirect("/");
     }
 
-    response.render("admin/login", { pageTitle: "Login" });
+    response.render("admin/login", { layout: false, pageTitle: "Login" });
 });
 
 //login submit
@@ -65,14 +65,15 @@ router.get("/logout", async (request, response) => {
 });
 
 router.get("/cases", async (request, response) => {
-    // if (!request.session.admin) {
-    //     return response.redirect("/");
-    // }
+    if (!request.session.admin) {
+        return response.redirect("/");
+    }
 
     try {
         const allCases = await casesData.getAllCases();
 
         response.render("cases/all-cases", {
+            layout: false,
             pageTitle: "All Cases",
             allCases: allCases,
         });
@@ -87,9 +88,9 @@ router.get("/cases", async (request, response) => {
 });
 
 router.get("/case/:id", async (request, response) => {
-    // if (!request.session.admin) {
-    //     return response.redirect("/");
-    // }
+    if (!request.session.admin) {
+        return response.redirect("/");
+    }
 
     try {
         const caseData = await casesData.getCaseById(request.params.id);
@@ -102,6 +103,7 @@ router.get("/case/:id", async (request, response) => {
                 : [];
 
         response.render("cases/admin-case", {
+            layout: false,
             pageTitle: "Case",
             caseData: caseData,
         });
@@ -112,6 +114,26 @@ router.get("/case/:id", async (request, response) => {
                 pageTitle: "Case",
                 error: error.message || "Internal Server Error",
             });
+    }
+});
+
+router.post("/closeCase/:id", async (request, response) => {
+    if (!request.session.admin) {
+        return response.redirect("/");
+    }
+
+    try {
+        console.log(request.body, request.params);
+        const requestPostData = request.body;
+
+        const caseComment = requestPostData.caseComment.trim();
+        const caseId = request.params.id.trim();
+
+        await casesData.closeCase(caseComment, caseId);
+
+        response.redirect(`/admin/case/${request.params.id}`);
+    } catch (error) {
+        response.redirect(`/admin/case/${request.params.id}`);
     }
 });
 
