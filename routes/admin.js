@@ -95,6 +95,8 @@ router.get("/case/:id", async (request, response) => {
     try {
         const caseData = await casesData.getCaseById(request.params.id);
 
+        console.log(caseData);
+
         caseData.bodyParts =
             caseData.bodyPartsIds.length > 0
                 ? caseData.bodyPartsIds.map((currentBodyPart) =>

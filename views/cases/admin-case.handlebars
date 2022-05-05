@@ -6,16 +6,18 @@
             Case Details
         </div>
         <div class="card-body">
-            <p><strong>Case Id: {{caseData._id}}</strong></p>
+            <p><strong>Case Id:</strong> {{caseData._id}}</p>
+            <p><strong>Patient Name:</strong> {{caseData.user.firstName}} {{caseData.user.lastName}}</p>
+            <p><strong>Patient Email Id:</strong> {{caseData.user.email}}</p>
+            <p><strong>Patient Date of Birth:</strong> {{caseData.user.dateOfBirth}}</p>
+            <p class="text-capitalize"><strong>Patient Gender:</strong> {{caseData.user.gender}}</p>
             <p>
-                <strong>
-                    Status:
-                    {{#if caseData.isCaseOpen}}
-                    <span class="badge rounded-pill bg-danger bg-sm">Open</span>
-                    {{else}}
-                    <span class="badge rounded-pill bg-success">Closed</span>
-                    {{/if}}
-                </strong>
+                <strong>Status:</strong>
+                {{#if caseData.isCaseOpen}}
+                <span class="badge rounded-pill bg-danger bg-sm">Open</span>
+                {{else}}
+                <span class="badge rounded-pill bg-success">Closed</span>
+                {{/if}}
             </p>
 
             {{#unless caseData.isCaseOpen}}

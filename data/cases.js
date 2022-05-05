@@ -4,6 +4,7 @@ const ErrorCode = require("../helpers/error-code");
 const moment = require("moment");
 
 const cases = mongoCollections.cases;
+const users = mongoCollections.users;
 
 async function addCase(
     userId,
@@ -81,6 +82,23 @@ async function getCaseById(caseId) {
         const casesCollection = await cases();
 
         const caseData = await casesCollection.findOne({ _id: caseId });
+
+        const usersCollection = await users();
+
+        const userData = await usersCollection.findOne(
+            { _id: caseData.userId },
+            {
+                projection: {
+                    firstName: 1,
+                    lastName: 1,
+                    email: 1,
+                    dateOfBirth: 1,
+                    gender: 1,
+                },
+            }
+        );
+
+        caseData.user = userData;
 
         return caseData;
     } catch (error) {
