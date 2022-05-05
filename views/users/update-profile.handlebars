@@ -8,25 +8,14 @@
                         <h1 class="mb-1 fw-bold">Edit your profile</h1>
                     </div>
 
-                    <form
-                        id="edit-user-profile"
-                        class="needs-validation"
-                        novalidate
-                    >
+                    <form id="edit-user-profile" class="needs-validation" novalidate>
 
                         <div class="mb-3">
                             <label for="first-name" class="form-label">First
                                 Name<span class="mandatory">*</span></label>
-                            <input
-                                type="text"
-                                id="first-name"
-                                class="form-control"
-                                name="firstName"
-                                placeholder="First Name"
-                                value={{user.firstName}}
-                                required="required"
-                                autocomplete="off"
-                            />
+                            <input type="text" id="first-name" class="form-control" name="firstName"
+                                placeholder="First Name" value={{user.firstName}} required="required"
+                                autocomplete="off" />
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -40,19 +29,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="last-name" class="form-label">Last Name<span
-                                    class="mandatory"
-                                >*</span></label>
-                            <input
-                                type="text"
-                                id="last-name"
-                                class="form-control"
-                                name="lastName"
-                                placeholder="Last Name"
-                                value={{user.lastName}}
-                                required="required"
-                                autocomplete="off"
-                            />
+                            <label for="last-name" class="form-label">Last Name<span class="mandatory">*</span></label>
+                            <input type="text" id="last-name" class="form-control" name="lastName"
+                                placeholder="Last Name" value={{user.lastName}} required="required"
+                                autocomplete="off" />
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -68,16 +48,9 @@
                         <div class="mb-3">
                             <label for="date-of-birth" class="form-label">Date
                                 of Birth<span class="mandatory">*</span></label>
-                            <input
-                                type="date"
-                                id="date-of-birth"
-                                class="form-control"
-                                name="dateOfBirth"
-                                placeholder="Date of Birth"
-                                value={{user.dateOfBirth}}
-                                required="required"
-                                autocomplete="off"
-                            />
+                            <input type="date" id="date-of-birth" class="form-control" name="dateOfBirth"
+                                placeholder="Date of Birth" value={{user.dateOfBirth}} required="required"
+                                autocomplete="off" />
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -93,16 +66,29 @@
                             </div>
                         </div>
 
+                        <label class="form-label" for="gender">Gender<span class="mandatory">*</span></label>
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="gender">
+                                <option value="male" {{#ifeq user.gender "male" }}selected{{/ifeq}}>Male</option>
+                                <option value="female" {{#ifeq user.gender "female" }}selected{{/ifeq}}>Female
+                                </option>
+                                <option value="others" {{#ifeq user.gender "others" }}selected{{/ifeq}}>Others
+                                </option>
+                            </select>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Gender is mandatory
+                            </div>
+                        </div>
+
                         <p class="text-danger d-none" id="error-message"></p>
 
                         <div>
                             <div class="d-grid">
-                                <button
-                                    type="submit"
-                                    id="submitButton"
-                                    name="submitButton"
-                                    class="btn btn-primary"
-                                >Save Profile</button>
+                                <button type="submit" id="submitButton" name="submitButton" class="btn btn-primary">Save
+                                    Profile</button>
                             </div>
                         </div>
                     </form>
@@ -115,10 +101,7 @@
 </div>
 
 <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
     integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-></script>
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/public/js/users.js"></script>

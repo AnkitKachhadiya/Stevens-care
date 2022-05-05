@@ -10,26 +10,12 @@
                             <a href="/users" class="ms-1">Sign in</a></span>
                     </div>
 
-                    <form
-                        action="/users/signup"
-                        id="signup-form"
-                        class="needs-validation"
-                        novalidate
-                    >
+                    <form action="/users/signup" id="signup-form" class="needs-validation" novalidate>
 
                         <div class="mb-3">
-                            <label for="firstName" class="form-label">First Name<span
-                                    class="mandatory"
-                                >*</span></label>
-                            <input
-                                type="text"
-                                id="firstName"
-                                class="form-control"
-                                name="firstName"
-                                placeholder="Enter your first name here"
-                                required="required"
-                                autocomplete="off"
-                            />
+                            <label for="firstName" class="form-label">First Name<span class="mandatory">*</span></label>
+                            <input type="text" id="firstName" class="form-control" name="firstName"
+                                placeholder="Enter your first name here" required="required" autocomplete="off" />
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -43,18 +29,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="lastName" class="form-label">Last Name<span
-                                    class="mandatory"
-                                >*</span></label>
-                            <input
-                                type="text"
-                                id="lastName"
-                                class="form-control"
-                                name="lastName"
-                                placeholder="Enter your last name here"
-                                required="required"
-                                autocomplete="off"
-                            />
+                            <label for="lastName" class="form-label">Last Name<span class="mandatory">*</span></label>
+                            <input type="text" id="lastName" class="form-control" name="lastName"
+                                placeholder="Enter your last name here" required="required" autocomplete="off" />
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -68,18 +45,11 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email<span
-                                    class="mandatory"
-                                >*</span></label>
-                            <input
-                                type="email"
-                                id="email"
-                                class="form-control"
-                                name="email"
-                                placeholder="Enter your email address here"
-                                required="required"
-                                autocomplete="off"
-                            />
+                            <label for="email" class="form-label">Email<span class="mandatory">*</span></label>
+                            <input type="email" id="email" class="form-control" name="email"
+                                placeholder="Enter your stevens email address here" required="required"
+                                autocomplete="off" />
+                            <small id="email" class="form-text text-muted">Sign up only using stevens email id</small>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -87,19 +57,16 @@
                                 Email is mandatory and it should be in valid
                                 format.
                             </div>
+                            <div class="invalid-feedback">
+                                Email id must be stevens email id eg. student@stevens.edu
+                            </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="dateOfBirth" class="form-label">Date of
                                 Birth<span class="mandatory">*</span></label>
-                            <input
-                                type="date"
-                                id="dateOfBirth"
-                                class="form-control"
-                                name="dateOfBirth"
-                                required="required"
-                                autocomplete="off"
-                            />
+                            <input type="date" id="dateOfBirth" class="form-control" name="dateOfBirth"
+                                required="required" autocomplete="off" />
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -115,23 +82,27 @@
                             </div>
                         </div>
 
-                        <label for="password" class="form-label">Password<span
-                                class="mandatory"
-                            >*</span></label>
+                        <label class="form-label" for="gender">Gender<span class="mandatory">*</span></label>
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="gender">
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Gender is mandatory
+                            </div>
+                        </div>
+
+                        <label for="password" class="form-label">Password<span class="mandatory">*</span></label>
                         <div class="mb-3 input-group">
-                            <input
-                                type="password"
-                                id="password"
-                                class="form-control"
-                                name="password"
-                                placeholder="********"
-                                required="required"
-                                autocomplete="off"
-                            />
-                            <button
-                                class="btn btn-outline-secondary show-password"
-                                type="button"
-                            >Show</button>
+                            <input type="password" id="password" class="form-control" name="password"
+                                placeholder="********" required="required" autocomplete="off" />
+                            <button class="btn btn-outline-secondary show-password" type="button">Show</button>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -168,10 +139,7 @@
 </div>
 
 <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
     integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-></script>
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/public/js/users.js"></script>

@@ -61,12 +61,15 @@ router.post("/signup", async (request, response) => {
             xss(requestPostData.password)
         );
 
+        const gender = xss(requestPostData.gender);
+
         const user = await usersData.create(
             firstName,
             lastName,
             email,
             dateOfBirth,
-            password
+            password,
+            gender
         );
 
         if (!user) {
@@ -211,12 +214,15 @@ router.put("/profile", async (request, response) => {
         const dateOfBirth = validator.isBirthDateValid(
             xss(requestPostData.dateOfBirth)
         );
+        const gender = xss(requestPostData.gender);
 
         const userDetails = request.session.user;
+
         if (
             firstName === userDetails.firstName &&
             lastName === userDetails.lastName &&
-            dateOfBirth === userDetails.dateOfBirth
+            dateOfBirth === userDetails.dateOfBirth &&
+            gender === userDetails.gender
         ) {
             throwError(
                 ErrorCode.BAD_REQUEST,
@@ -228,7 +234,8 @@ router.put("/profile", async (request, response) => {
             request.session.user._id,
             firstName,
             lastName,
-            dateOfBirth
+            dateOfBirth,
+            gender
         );
 
         if (!user.profileUpdated) {

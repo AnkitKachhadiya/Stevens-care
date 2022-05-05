@@ -13,6 +13,7 @@
         const email = $("#email");
         const dateOfBirth = $("#dateOfBirth");
         const password = $("#password");
+        const gender = $("#gender");
 
         const user = {
             firstName: firstName.val().trim(),
@@ -20,9 +21,10 @@
             email: email.val().trim(),
             dateOfBirth: dateOfBirth.val().trim(),
             password: password.val(),
+            gender: gender.val().trim(),
         };
 
-        $("input").removeClass("is-invalid is-valid");
+        $("input, select").removeClass("is-invalid is-valid");
 
         validUserIdentity(user.firstName)
             ? firstName.addClass("is-valid")
@@ -43,6 +45,10 @@
         validPassword(user.password)
             ? password.addClass("is-valid")
             : password.addClass("is-invalid");
+
+        validGender(user.gender)
+            ? gender.addClass("is-valid")
+            : gender.addClass("is-invalid");
 
         if (hasErrors) {
             return;
@@ -157,6 +163,13 @@
             return false;
         }
 
+        const emailArr = email.split("@");
+
+        if (emailArr[1].toLowerCase() !== "stevens.edu") {
+            hasErrors = true;
+            return false;
+        }
+
         return true;
     }
 
@@ -203,6 +216,15 @@
         const passwordRegex = /[^\S]/;
 
         if (passwordRegex.test(password)) {
+            hasErrors = true;
+            return false;
+        }
+
+        return true;
+    }
+
+    function validGender(gender) {
+        if (validator.isEmpty(gender)) {
             hasErrors = true;
             return false;
         }
@@ -302,11 +324,13 @@
         const firstName = $("#first-name");
         const lastName = $("#last-name");
         const dateOfBirth = $("#date-of-birth");
+        const gender = $("#gender");
 
         const user = {
             firstName: firstName.val().trim(),
             lastName: lastName.val().trim(),
             dateOfBirth: dateOfBirth.val().trim(),
+            gender: gender.val().trim(),
         };
 
         $("input").removeClass("is-invalid is-valid");
@@ -322,6 +346,10 @@
         validDateOfBirth(user.dateOfBirth)
             ? dateOfBirth.addClass("is-valid")
             : dateOfBirth.addClass("is-invalid");
+
+        validGender(user.gender)
+            ? gender.addClass("is-valid")
+            : gender.addClass("is-invalid");
 
         if (hasErrors) {
             return;

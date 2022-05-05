@@ -61,7 +61,7 @@ router.get("/logout", async (request, response) => {
         request.app.locals.isAdminAuthenticated = false;
     }
 
-    response.redirect("/users");
+    response.redirect("/admin");
 });
 
 router.get("/cases", async (request, response) => {

@@ -1,7 +1,7 @@
 const common = require("./common");
 
 function isSignUpTotalFieldsValid(totalFields) {
-    const TOTAL_MANDATORY_FIELDS = 5;
+    const TOTAL_MANDATORY_FIELDS = 6;
 
     common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
 }
@@ -25,13 +25,13 @@ function isCheckUserTotalFieldsValid(totalFields) {
 }
 
 function isUpdateProfileFieldsValid(totalFields) {
-    const TOTAL_MANDATORY_FIELDS = 4;
+    const TOTAL_MANDATORY_FIELDS = 5;
 
     common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
 }
 
 function isSubmitProfileFieldsValid(totalFields) {
-    const TOTAL_MANDATORY_FIELDS = 3;
+    const TOTAL_MANDATORY_FIELDS = 4;
 
     common.isTotalFieldsValid(totalFields, TOTAL_MANDATORY_FIELDS);
 }

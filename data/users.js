@@ -9,7 +9,14 @@ const users = mongoCollections.users;
 
 const SALT_ROUNDS = 16;
 
-async function create(_firstName, _lastName, _email, _dateOfBirth, _password) {
+async function create(
+    _firstName,
+    _lastName,
+    _email,
+    _dateOfBirth,
+    _password,
+    _gender
+) {
     try {
         validator.isSignUpTotalFieldsValid(arguments.length);
 
@@ -18,6 +25,7 @@ async function create(_firstName, _lastName, _email, _dateOfBirth, _password) {
         const email = validator.isEmailValid(xss(_email));
         const dateOfBirth = validator.isBirthDateValid(xss(_dateOfBirth));
         const password = validator.isPasswordValid(xss(_password));
+        const gender = xss(_gender);
 
         const usersCollection = await users();
 
@@ -41,6 +49,7 @@ async function create(_firstName, _lastName, _email, _dateOfBirth, _password) {
             email: email,
             dateOfBirth: dateOfBirth,
             password: passwordHash,
+            gender: gender,
         };
 
         const insertedInfo = await usersCollection.insertOne(newUser);
@@ -75,6 +84,7 @@ async function get(_userId) {
                     lastName: 1,
                     email: 1,
                     dateOfBirth: 1,
+                    gender: 1,
                 },
             }
         );
@@ -139,7 +149,13 @@ async function checkUser(_email, _password) {
     }
 }
 
-async function updateProfile(_userId, _firstName, _lastName, _dateOfBirth) {
+async function updateProfile(
+    _userId,
+    _firstName,
+    _lastName,
+    _dateOfBirth,
+    _gender
+) {
     try {
         validator.isUpdateProfileFieldsValid(arguments.length);
 
@@ -147,6 +163,7 @@ async function updateProfile(_userId, _firstName, _lastName, _dateOfBirth) {
         const firstName = validator.isFirstNameValid(xss(_firstName));
         const lastName = validator.isLastNameValid(xss(_lastName));
         const dateOfBirth = validator.isBirthDateValid(xss(_dateOfBirth));
+        const gender = xss(_gender);
 
         const usersCollection = await users();
 
@@ -167,6 +184,7 @@ async function updateProfile(_userId, _firstName, _lastName, _dateOfBirth) {
             firstName: firstName,
             lastName: lastName,
             dateOfBirth: dateOfBirth,
+            gender: gender,
         };
 
         const updatedInfo = await usersCollection.updateOne(
