@@ -25,4 +25,12 @@ npm run seed
 npm start
 ```
 
-Go to http://localhost:3000/ in browser to use the web application
+## Instructions
+
+-   Go to http://localhost:3000/ in browser to use the web application.
+
+-   For admin view go to http://localhost:3000/admin
+
+-   Admin Credentials:
+    -   Admin Email Id: admin@stevens.edu
+    -   Admin Password: stevens@123
