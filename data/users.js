@@ -287,7 +287,6 @@ const throwError = (code = 500, message = "Error: Internal Server Error") => {
 };
 
 const throwCatchError = (error) => {
-    console.log(error);
     if (error.code && error.message) {
         throwError(error.code, error.message);
     }
