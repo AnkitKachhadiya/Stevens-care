@@ -126,3 +126,8 @@
 #right-column {
     margin-left: 8rem;
 }
+
+.case-options-wrapper {
+    margin-top: 15rem !important;
+    margin-bottom: 12rem !important;
+}
