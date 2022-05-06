@@ -4,7 +4,7 @@ const admin = data.admin;
 
 async function init() {
     const db = await dbConnection.connectDb();
-    db.dropDatabase();
+    await db.dropDatabase();
 
     const adminData = await admin.create("admin@stevens.edu", "stevens@123");
 
